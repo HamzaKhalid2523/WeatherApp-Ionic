@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="toolbar-title">
+      pWeather
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid *ngIf="weather">
+    <ion-row>
+      <ion-col width-50 offset-25>
+        <h2 class="location"> {{weather.name}}</h2>
+        <div class="icon"><img src="assets/{{weather.weather[0].icon}}.png"></div>
+        <h3 class="desc">{{weather.weather[0].description}}</h3>
+        <h1 class="temp">{{weather.main.temp}}&deg;</h1>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            <p><strong>Humidity: </strong> {{weather.main.humidity}}%</p>
+          </ion-item>
+          <ion-item>
+            <p><strong>Pressure: </strong> {{weather.main.pressure}} hpa</p>
+          </ion-item>
+          <ion-item>
+            <p><strong>Sunrise: </strong> {{weather.sys.sunrise * 1000 | date: 'H:mm'}}</p>
+          </ion-item>
+          <ion-item>
+            <p><strong>Sunset: </strong> {{weather.sys.sunset * 1000 | date: 'H:mm'}}</p>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="!weather">
+    <ion-row>
+      <ion-col width-50 offset-25>
+        <h2> City Not Found</h2>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
